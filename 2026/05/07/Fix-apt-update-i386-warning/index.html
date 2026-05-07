@@ -19,25 +19,25 @@
   <meta name="author" content="dyliu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Debugging Overleaf: Disk Space Caused MongoDB CorruptionThe Story of a Mysterious Login FailureIt started like any other day - I tried to log into my self-hosted Overleaf instance, but the page just h">
+    <meta name="description" content="Fix apt update i386 architecture warningProblem: After installing packages like Google Chrome (which includes i386 architecture), running apt update shows repeated warnings: 1N: Skipping acquire of co">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Debug Overleaf Error: MongoDB v2">
-<meta property="og:url" content="https://dyliu0312.github.io/blog.github.io/2026/03/05/Debug-Overleaf-Error-MongoDB-v2/index.html">
+<meta property="og:title" content="Fix apt update i386 architecture warning">
+<meta property="og:url" content="https://dyliu0312.github.io/blog.github.io/2026/05/07/Fix-apt-update-i386-warning/index.html">
 <meta property="og:site_name" content="dyliu&#39;s Blog">
-<meta property="og:description" content="Debugging Overleaf: Disk Space Caused MongoDB CorruptionThe Story of a Mysterious Login FailureIt started like any other day - I tried to log into my self-hosted Overleaf instance, but the page just h">
+<meta property="og:description" content="Fix apt update i386 architecture warningProblem: After installing packages like Google Chrome (which includes i386 architecture), running apt update shows repeated warnings: 1N: Skipping acquire of co">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2026-03-04T17:34:19.000Z">
-<meta property="article:modified_time" content="2026-04-21T15:35:38.248Z">
+<meta property="article:published_time" content="2026-05-07T10:20:00.000Z">
+<meta property="article:modified_time" content="2026-05-07T10:42:42.385Z">
 <meta property="article:author" content="dyliu">
-<meta property="article:tag" content="Docker">
-<meta property="article:tag" content="Overleaf">
+<meta property="article:tag" content="Ubuntu">
+<meta property="article:tag" content="APT">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Debug Overleaf Error: MongoDB v2 - dyliu&#39;s Blog</title>
+  <title>Fix apt update i386 architecture warning - dyliu&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -306,7 +306,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Debug Overleaf Error: MongoDB v2"></span>
+            <span id="subtitle" data-typed-text="Fix apt update i386 architecture warning"></span>
           
         </div>
 
@@ -317,8 +317,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-03-05 01:34" pubdate>
-          March 5, 2026 am
+        <time datetime="2026-05-07 18:20" pubdate>
+          May 7, 2026 pm
         </time>
       </span>
     
@@ -329,7 +329,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.8k words
+          1.3k words
         
       </span>
     
@@ -340,7 +340,7 @@
         
         
         
-          32 mins
+          11 mins
         
       </span>
     
@@ -379,73 +379,52 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Debug Overleaf Error: MongoDB v2</h1>
+            <h1 id="seo-header">Fix apt update i386 architecture warning</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Debugging-Overleaf-Disk-Space-Caused-MongoDB-Corruption"><a href="#Debugging-Overleaf-Disk-Space-Caused-MongoDB-Corruption" class="headerlink" title="Debugging Overleaf: Disk Space Caused MongoDB Corruption"></a>Debugging Overleaf: Disk Space Caused MongoDB Corruption</h1><h2 id="The-Story-of-a-Mysterious-Login-Failure"><a href="#The-Story-of-a-Mysterious-Login-Failure" class="headerlink" title="The Story of a Mysterious Login Failure"></a>The Story of a Mysterious Login Failure</h2><p>It started like any other day - I tried to log into my self-hosted Overleaf instance, but the page just hung there. No error message, no timeout, just an endless loading spinner. Little did I know, this was the beginning of a journey through disk space issues, database corruption, and a race against time to recover precious data.</p>
-<h2 id="Checking-the-Logs"><a href="#Checking-the-Logs" class="headerlink" title="Checking the Logs"></a>Checking the Logs</h2><p>First stop - the container logs:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker-compose logs web | <span class="hljs-built_in">tail</span> -50<br></code></pre></td></tr></table></figure>
+                <h1 id="Fix-apt-update-i386-architecture-warning"><a href="#Fix-apt-update-i386-architecture-warning" class="headerlink" title="Fix apt update i386 architecture warning"></a>Fix apt update i386 architecture warning</h1><p><strong>Problem:</strong> After installing packages like Google Chrome (which includes i386 architecture), running <code>apt update</code> shows repeated warnings:</p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vhdl">N: Skipping acquire <span class="hljs-keyword">of</span> configured <span class="hljs-keyword">file</span> <span class="hljs-symbol">&#x27;main</span>/binary-i386/Packages&#x27; as repository <span class="hljs-symbol">&#x27;https</span>://dl.google.com/linux/chrome-stable/deb stable InRelease&#x27; doesn<span class="hljs-symbol">&#x27;t</span> support <span class="hljs-keyword">architecture</span> <span class="hljs-symbol">&#x27;i386</span>&#x27;<br></code></pre></td></tr></table></figure>
 
-<p>What I found was alarming:</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">MongoServerSelectionError: connect ECONNREFUSED<br></code></pre></td></tr></table></figure>
+<p>Even if you manually modify the <code>google-chrome.sources</code> files to specify <code>Architectures: amd64</code>, changes are overwritten after reboot because these are generated dynamically.</p>
+<h2 id="Solution-Set-APT-architecture-priority-to-amd64"><a href="#Solution-Set-APT-architecture-priority-to-amd64" class="headerlink" title="Solution: Set APT architecture priority to amd64"></a>Solution: Set APT architecture priority to amd64</h2><p>Instead of modifying source files, configure APT to prefer <code>amd64</code> architecture. This tells APT to prioritize 64-bit packages and suppress the i386 warning.</p>
+<h3 id="Step-1-Create-APT-configuration-file"><a href="#Step-1-Create-APT-configuration-file" class="headerlink" title="Step 1: Create APT configuration file"></a>Step 1: Create APT configuration file</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> nano /etc/apt/apt.conf.d/99amd64<br></code></pre></td></tr></table></figure>
 
-<p>Looking deeper into the logs, I spotted this critical error from Redis:</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">Write <span class="hljs-keyword">error</span> <span class="hljs-keyword">while</span> saving DB <span class="hljs-keyword">to</span> <span class="hljs-keyword">the</span> disk(rdbSaveRio): No <span class="hljs-literal">space</span> left <span class="hljs-keyword">on</span> device<br></code></pre></td></tr></table></figure>
+<h3 id="Step-2-Add-the-following-content"><a href="#Step-2-Add-the-following-content" class="headerlink" title="Step 2: Add the following content"></a>Step 2: Add the following content</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cpp">APT::Architectures:: <span class="hljs-string">&quot;amd64&quot;</span>;<br></code></pre></td></tr></table></figure>
 
-<p>MongoDB was corrupted due to insufficient disk space. After cleaning up some space, I tried to repeat what I had done last time (see <a href="https://dyliu0312.github.io/blog.github.io/2025/12/26/Debug-Overleaf-Error-MongoDB/">Debugging Overleaf: Fixing MongoNetworkError Connection Refused</a>).</p>
-<h2 id="The-Recovery-Journey"><a href="#The-Recovery-Journey" class="headerlink" title="The Recovery Journey"></a>The Recovery Journey</h2><h3 id="Phase-1-Backup"><a href="#Phase-1-Backup" class="headerlink" title="Phase 1: Backup"></a>Phase 1: Backup</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Stop all containers</span><br>docker-compose down<br><br><span class="hljs-comment"># Backup current data (just in case)</span><br><span class="hljs-built_in">cp</span> -r data/mongo data/mongo-backup-$(<span class="hljs-built_in">date</span> +%Y%m%d)<br></code></pre></td></tr></table></figure>
+<p>This forces APT to use <code>amd64</code> as the primary architecture.</p>
+<h3 id="Step-3-Verify"><a href="#Step-3-Verify" class="headerlink" title="Step 3: Verify"></a>Step 3: Verify</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update<br></code></pre></td></tr></table></figure>
 
-<h3 id="Phase-2-Repair-and-Export-Database"><a href="#Phase-2-Repair-and-Export-Database" class="headerlink" title="Phase 2: Repair and Export Database"></a>Phase 2: Repair and Export Database</h3><p>I attempted to repair and export the database:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker run --<span class="hljs-built_in">rm</span> -v $(<span class="hljs-built_in">pwd</span>)/data/mongo:/data/db -v $(<span class="hljs-built_in">pwd</span>)/bk-data-mongo:/backup mongo:8.0 bash -c <span class="hljs-string">&quot;</span><br><span class="hljs-string">echo &#x27;Starting MongoDB in repair mode...&#x27; &amp;&amp; </span><br><span class="hljs-string">mongod --repair --dbpath /data/db &amp;&amp; </span><br><span class="hljs-string">sleep 10 &amp;&amp;</span><br><span class="hljs-string">echo &#x27;Exporting databases...&#x27; &amp;&amp; </span><br><span class="hljs-string">mongodump --out /backup/mongo-recovery-\$(date +%Y%m%d-%H%M%S)</span><br><span class="hljs-string">&quot;</span><br></code></pre></td></tr></table></figure>
+<p>The i386 warning should disappear.</p>
+<hr>
+<h2 id="Additional-Step-Remove-i386-architecture-entirely-optional"><a href="#Additional-Step-Remove-i386-architecture-entirely-optional" class="headerlink" title="Additional Step: Remove i386 architecture entirely (optional)"></a>Additional Step: Remove i386 architecture entirely (optional)</h2><p>If you don’t need i386 packages at all, you can drop the architecture completely:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> dpkg --remove-architecture i386<br></code></pre></td></tr></table></figure>
 
-<p>This worked! The repair fixed the corruption, and <code>mongodump</code> successfully exported the data to my <code>bk-data-mongo</code> directory.</p>
-<h3 id="Phase-3-Fresh-Database-Setup"><a href="#Phase-3-Fresh-Database-Setup" class="headerlink" title="Phase 3: Fresh Database Setup"></a>Phase 3: Fresh Database Setup</h3><p>I replaced the corrupted data with a fresh directory:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mv</span> data/mongo data/mongo_bk<br><span class="hljs-built_in">mkdir</span> data/mongo<br></code></pre></td></tr></table></figure>
-
-<p>Then started Overleaf to let it initialize a fresh database:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bin/up<br></code></pre></td></tr></table></figure>
-
-<p>After the homepage loaded successfully, I stopped it with Ctrl+C.</p>
-<h3 id="Phase-4-The-“NotPrimaryOrSecondary”-Trap"><a href="#Phase-4-The-“NotPrimaryOrSecondary”-Trap" class="headerlink" title="Phase 4: The “NotPrimaryOrSecondary” Trap"></a>Phase 4: The “NotPrimaryOrSecondary” Trap</h3><p>Based on my previous experience, I tried to initialize the replica set with:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker <span class="hljs-built_in">exec</span> mongo mongosh --<span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;rs.initiate()&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>But when I tried to restore data, I got:</p>
-<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pf">Failed: (NotPrimaryOrSecondary) node is not <span class="hljs-keyword">in</span> primary or recovering <span class="hljs-keyword">state</span><br></code></pre></td></tr></table></figure>
-
-<p>The node wasn’t the primary, so it couldn’t accept write operations during restore.</p>
-<p>This is where I learned something crucial. Looking at Overleaf Toolkit’s <code>bin/up</code> script, I found this:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">initiate_mongo_replica_set</span></span>() &#123;<br>  <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;Initiating Mongo replica set...&quot;</span><br>  <span class="hljs-built_in">env</span> SKIP_WARNINGS=<span class="hljs-literal">true</span> <span class="hljs-string">&quot;<span class="hljs-variable">$TOOLKIT_ROOT</span>/bin/docker-compose&quot;</span> up -d mongo<br>  <span class="hljs-built_in">env</span> SKIP_WARNINGS=<span class="hljs-literal">true</span> <span class="hljs-string">&quot;<span class="hljs-variable">$TOOLKIT_ROOT</span>/bin/docker-compose&quot;</span> <span class="hljs-built_in">exec</span> -T mongo sh -c <span class="hljs-string">&#x27;</span><br><span class="hljs-string">    while ! &#x27;</span>\<span class="hljs-variable">$MONGOSH</span><span class="hljs-string">&#x27; --eval &quot;db.version()&quot; &gt; /dev/null; do</span><br><span class="hljs-string">      echo &quot;Waiting for Mongo...&quot;</span><br><span class="hljs-string">      sleep 1</span><br><span class="hljs-string">    done</span><br><span class="hljs-string">    &#x27;</span>\<span class="hljs-variable">$MONGOSH</span><span class="hljs-string">&#x27; --eval &quot;db.isMaster().primary || rs.initiate(&#123; _id: \&quot;overleaf\&quot;, members: [ &#123; _id: 0, host: \&quot;mongo:27017\&quot; &#125; ] &#125;)&quot; &gt; /dev/null&#x27;</span><br>&#125;<br></code></pre></td></tr></table></figure>
-
-<p><strong>Key insight</strong>: Overleaf initializes the replica set with:</p>
-<ul>
-<li><strong>Name</strong>: <code>&quot;overleaf&quot;</code> (not the default)</li>
-<li><strong>Host</strong>: <code>&quot;mongo:27017&quot;</code> (the container service name, not localhost)</li>
-</ul>
-<p>This explained why my manual <code>rs.initiate()</code> didn’t work correctly!</p>
-<h3 id="Phase-5-Successful-Restoration"><a href="#Phase-5-Successful-Restoration" class="headerlink" title="Phase 5: Successful Restoration"></a>Phase 5: Successful Restoration</h3><p>With this knowledge, I restored the data properly:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># Start MongoDB</span><br>bin/docker-compose up -d mongo<br><br><span class="hljs-comment"># Copy the backup into the container</span><br>docker <span class="hljs-built_in">cp</span> bk-data-mongo/mongo-recovery-*/ mongo:/tmp_bk<br><br><span class="hljs-comment"># Restore the data</span><br>docker <span class="hljs-built_in">exec</span> mongo mongorestore /tmp_bk<br></code></pre></td></tr></table></figure>
-
-<p>The restore showed partial success:</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">2026</span>-<span class="hljs-number">03</span>-<span class="hljs-number">04</span>T16:<span class="hljs-number">55</span>:<span class="hljs-number">27</span>.<span class="hljs-number">524</span>+<span class="hljs-number">0000</span>    <span class="hljs-number">2130</span> document(s) restored successfully. <span class="hljs-number">74</span> document(s) failed to restore.<br></code></pre></td></tr></table></figure>
-
-<p>Most data was recovered! I then stopped MongoDB:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bin/docker-compose down mongo<br></code></pre></td></tr></table></figure>
-
-<h3 id="Phase-6-The-Hurdle-“already-initialized”"><a href="#Phase-6-The-Hurdle-“already-initialized”" class="headerlink" title="Phase 6: The Hurdle - “already initialized”"></a>Phase 6: The Hurdle - “already initialized”</h3><p>When I started everything back up:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">bin/up -d<br></code></pre></td></tr></table></figure>
-
-<p>I got: <code>MongoServerError: already initialized</code></p>
-<p>The fix? Just stop and start again:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">bin/stop<br>bin/up -d<br></code></pre></td></tr></table></figure>
-
-<h3 id="Phase-7-The-Final-Issue"><a href="#Phase-7-The-Final-Issue" class="headerlink" title="Phase 7: The Final Issue"></a>Phase 7: The Final Issue</h3><p>After that you may not notice the there is another hidden problem, which is <a href="https://dyliu0312.github.io/blog.github.io/2025/12/26/Debug-Overleaf-Error-can-t-create-new-project-upload-files/">can’t create new project&#x2F;upload files</a>.<br>Change the ownership as mentioned in that note, we can get everything worked perfectly!</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
-<li>DeepSeek AI assistance</li>
-<li>Previous blog: <a href="https://dyliu0312.github.io/blog.github.io/2025/12/26/Debug-Overleaf-Error-MongoDB/">Debugging Overleaf: Fixing MongoNetworkError Connection Refused</a></li>
-<li>Previous blog: <a href="https://dyliu0312.github.io/blog.github.io/2025/12/26/Debug-Overleaf-Error-can-t-create-new-project-upload-files/">can’t create new project&#x2F;upload files</a></li>
-</ul>
+<p>Then re-run <code>apt update</code>.</p>
+<hr>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Modify source files</td>
+<td>Overwritten on reboot</td>
+</tr>
+<tr>
+<td>Set <code>APT::Architectures:: &quot;amd64&quot;</code></td>
+<td>Persistent, survives reboots</td>
+</tr>
+</tbody></table>
+<p>The APT configuration approach is cleaner and permanent.</p>
+<hr>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ol>
+<li>MiniMax M2.7</li>
+<li><a target="_blank" rel="noopener" href="https://wiki.debian.org/Multiarch/HOWTO">APT Multi-Arch documentation</a></li>
+</ol>
 
                 
               </div>
@@ -479,9 +458,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/blog.github.io/tags/Docker/" class="print-no-link">#Docker</a>
+        <a href="/blog.github.io/tags/Ubuntu/" class="print-no-link">#Ubuntu</a>
       
-        <a href="/blog.github.io/tags/Overleaf/" class="print-no-link">#Overleaf</a>
+        <a href="/blog.github.io/tags/APT/" class="print-no-link">#APT</a>
       
     </div>
   
@@ -493,8 +472,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Debug Overleaf Error: MongoDB v2</div>
-      <div>https://dyliu0312.github.io/blog.github.io/2026/03/05/Debug-Overleaf-Error-MongoDB-v2/</div>
+      <div>Fix apt update i386 architecture warning</div>
+      <div>https://dyliu0312.github.io/blog.github.io/2026/05/07/Fix-apt-update-i386-warning/</div>
     </div>
     <div class="license-meta">
       
@@ -506,7 +485,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 5, 2026</div>
+          <div>May 7, 2026</div>
         </div>
       
       
@@ -538,18 +517,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/blog.github.io/2026/04/21/Fix-EasyConnect-Startup-Issues-on-Ubuntu/" title="Fix EasyConnect Startup Issues on Ubuntu">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Fix EasyConnect Startup Issues on Ubuntu</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/blog.github.io/2025/12/26/Debug-Overleaf-Error-can-t-create-new-project-upload-files/" title="Debug Overleaf Error: can&#39;t create new project/upload files">
-                        <span class="hidden-mobile">Debug Overleaf Error: can&#39;t create new project/upload files</span>
+                      <a href="/blog.github.io/2026/04/21/Fix-EasyConnect-Startup-Issues-on-Ubuntu/" title="Fix EasyConnect Startup Issues on Ubuntu">
+                        <span class="hidden-mobile">Fix EasyConnect Startup Issues on Ubuntu</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
